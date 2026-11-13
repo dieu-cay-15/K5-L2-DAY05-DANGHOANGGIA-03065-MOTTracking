@@ -21,7 +21,7 @@ Ghi **trước khi vẽ**, mỗi người một dòng.
 | P1 | 0 | 149 | Đi chậm dần trong shop Vodafone quanh frame 25–60 | 30–39 (một phần), 40–49 (khuất hẳn), 50–59 (một phần) | Nam áo len đen bên trong cửa hàng Vodafone |
 | P2 | 0 | 149 | Tiến lại gần camera, kích thước box tăng dần từ frame 20–149 | Không bị che | Nữ áo khoác xanh lá đeo túi đen bên phải |
 | P3 | 0 | 149 | Đi thẳng tiến lại gần camera từ mép phải | Không bị che | Nam áo xanh dương đội mũ bên phải |
-| P4 | 0 | 108 | Đi chậm và rẽ vào cửa hàng Woolworths cùng P5 | Có thể bị che nhẹ khi vào cửa hàng | Bé gái áo trắng đi cạnh P5 *(lưu ý: trong file export hiện tại Track 3 MOT đang gán người áo khoác đen quần kaki)* |
+| P4 | 0 | 149 | Chuyển động nhanh ngang khung hình từ trái sang phải | Không bị che | Nam áo khoác đen quần kaki |
 | P5 | 0 | 108 | Rẽ vào cửa hàng Woolworths ở đoạn cuối (frame 80–108) | 90–108 (bị che một phần khi vào cửa), mất hẳn từ frame 109 | Nữ áo tối màu đeo túi hồng |
 
 ## 2. Keyframe và thời gian (CP1, CP4)
@@ -33,7 +33,7 @@ Số keyframe lấy từ kết quả `src/check_submission.py`.
 | P1 (CVAT Track 3 / MOT ID 4) | 15 | 0, 10, 20, 30, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 149 | 140 | 10.7 | ~25 | Bị che khuất qua cửa kính bởi người đi ngang qua (frame 30–59), phải ước lượng amodal box và bật tắt `occluded`/`outside` đúng mốc |
 | P2 (CVAT Track 0 / MOT ID 1) | 16 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 149 | 150 | 10.7 | ~15 | Người tiến lại gần camera nên kích thước box thay đổi liên tục |
 | P3 (CVAT Track 4 / MOT ID 5) | 16 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 149 | 150 | 10.7 | ~15 | Ở mép phải khung hình ở các frame đầu, cần bám sát rìa ảnh |
-| Track thứ 5 (CVAT Track 2 / MOT ID 3) | 16 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 149 | 150 | 10.7 | ~15 | Chuyển động nhanh ngang khung hình từ trái sang phải |
+| P4 (CVAT Track 2 / MOT ID 3) | 16 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 149 | 150 | 10.7 | ~15 | Chuyển động nhanh ngang khung hình từ trái sang phải |
 | P5 (CVAT Track 1 / MOT ID 2) | 7 | 0, 20, 40, 60, 80, 90, 100 | 109 | 6.4 | ~15 | Đi vào vùng tối trong cửa hàng Woolworths, bật `occluded` từ 90–108 và `outside` từ 109 |
 | **Tổng** | **70** | — | **699** | **10.0** | **~85** | |
 
@@ -41,7 +41,7 @@ Keyframe / 100 frame của cả bài = tổng keyframe ÷ tổng số frame có 
 
 Bạn đặt keyframe nhiều nhất ở người nào? Vì sao (người đó rẽ, dừng, lại gần camera hay bị che)?
 
-Đặt keyframe đều ở mức 15–16 keyframe cho các track xuất hiện đủ 150 frame (P1, P2, P3 và Track thứ 5), mật độ ~10.7 keyframe / 100 frame. Riêng P1 tuy chỉ có mặt 140 frame (do `outside` 10 frame) nhưng có 15 keyframe vì phải đánh dấu thêm mốc trước khi bị che (frame 30) và ngay khi hiện lại (frame 50); các người đi lại gần camera (P2, P3) cần keyframe định kỳ mỗi 10 frame để kích thước box không bị trôi.
+Đặt keyframe đều ở mức 15–16 keyframe cho các track xuất hiện đủ 150 frame (P1, P2, P3 và P4), mật độ ~10.7 keyframe / 100 frame. Riêng P1 tuy chỉ có mặt 140 frame (do `outside` 10 frame) nhưng có 15 keyframe vì phải đánh dấu thêm mốc trước khi bị che (frame 30) và ngay khi hiện lại (frame 50); các người đi lại gần camera (P2, P3) cần keyframe định kỳ mỗi 10 frame để kích thước box không bị trôi.
 
 ## 3. Đoạn bị che (CP2)
 
@@ -137,7 +137,7 @@ Số frame in theo CVAT (bắt đầu từ 0). Trong gt.txt, frame_id = frame CV
 
 1. Nếu được gán lại, bạn sẽ đặt keyframe khác ở đâu? Vì sao?
 
-   Ở những đoạn người đi thẳng đều (như P2, P3 giữa đoạn), có thể giãn keyframe thưa hơn (15–20 frame thay vì 10 frame) và dồn keyframe dày hơn ở các đoạn đổi hướng hoặc thay đổi kích thước nhanh khi lại gần camera; đồng thời rà kỹ danh sách P1–P5 của Đề B trước khi vẽ để tránh gán nhầm người (P4 là bé gái áo trắng).
+   Ở những đoạn người đi thẳng đều (như P2, P3 giữa đoạn), có thể giãn keyframe thưa hơn (15–20 frame thay vì 10 frame) và dồn keyframe dày hơn ở các đoạn đổi hướng hoặc thay đổi kích thước nhanh khi lại gần camera.
 
 2. Có chỗ nào bạn không chắc "cùng ID hay ID mới"? Bạn đã quyết định và ghi chú thế nào?
 
