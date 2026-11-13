@@ -152,4 +152,3 @@ Số frame in theo CVAT (bắt đầu từ 0). Trong gt.txt, frame_id = frame CV
 - Tài liệu hướng dẫn của môn học: `README.md`, `CHECKPOINTS.md`, `docs/GUIDELINE.md`, `docs/MOT_FORMAT.md`, `SUBMISSION.md`.
 - MOT17, MOTChallenge (Milan et al., 2016).
 - Công cụ CVAT Community (local) và script kiểm tra `src/check_submission.py`.
-- Hỗ trợ rà soát dữ liệu export, kiểm tra định dạng báo cáo và đối chiếu checklist nộp bài bằng trợ lý AI.
