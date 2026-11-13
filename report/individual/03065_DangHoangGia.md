@@ -6,12 +6,12 @@
 
 ## 0. Thông tin học viên
 
-- Họ tên:
-- MSSV:
-- Mã đề (A/B/C):
-- Email:
+- Họ tên:Đặng Hoàng Gia
+- MSSV: 2A202603065
+- Mã đề (A/B/C):B
+- Email:danggia2412@gmail.com
 - Link repository:
-- Giờ bắt đầu:
+- Giờ bắt đầu:4:35
 - Giờ kết thúc:
 
 ## 1. Xem trước đoạn video (CP0)
